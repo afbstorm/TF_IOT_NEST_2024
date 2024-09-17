@@ -49,6 +49,12 @@ $ npm install class-transformer class-validator
  app.useGlobalPipes(new ValidationPipe())
 ```
 
+## Installation de TypeORM pour Sql Server
+```bash
+$ npm install --save typeorm mssql
+$ npm install @nestjs/typeorm
+```
+
 ## Compile and run the project
 
 ```bash

@@ -8,30 +8,30 @@ export class ArticleController {
 
     constructor(private articleService : ArticleService){}
 
-    @Post()
-    addArticle(@Body() newArticle: ArticleCreateDTO){
-        this.articleService.create(newArticle)
-    }
-
+   
     @Get("list")
     test() {
-        console.log("toto")
-        
-        return this.articleService.list
+        return this.articleService.getAll()
     }
+
+    @Post()
+    addArticle(@Body() newArticle: ArticleCreateDTO){
+        return this.articleService.create(newArticle)
+    }
+
 
     @Get("/:id")
     getById(@Param("id") id: number) {
         return this.articleService.getById(id)
     }
 
-    @Delete("/:id")
-    delete(@Param("id") id: number) {
-        this.articleService.delete(id)
-    }
+    // @Delete("/:id")
+    // delete(@Param("id") id: number) {
+    //     this.articleService.delete(id)
+    // }
 
-    @Patch("/:id")
-    update(@Param("id") id : number, @Body() article : ArticleUpdateDTO){
-        this.articleService.update(id, article)
-    }
+    // @Patch("/:id")
+    // update(@Param("id") id : number, @Body() article : ArticleUpdateDTO){
+    //     this.articleService.update(id, article)
+    // }
 }
