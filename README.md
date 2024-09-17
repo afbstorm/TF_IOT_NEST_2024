@@ -40,6 +40,15 @@ $ npm install
 $ npm install @nestjs/swagger
 ```
 
+## Ajout validation DTO
+
+```bash
+$ npm install class-transformer class-validator
+
+#Ajouter dans main.ts
+ app.useGlobalPipes(new ValidationPipe())
+```
+
 ## Compile and run the project
 
 ```bash
