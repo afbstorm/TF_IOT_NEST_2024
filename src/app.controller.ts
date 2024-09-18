@@ -11,10 +11,10 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get("/:index")
-  getByIndex(@Param("index") index: number) {
-    return this.appService.getByIndex(index)
-  }
+  // @Get("/:index")
+  // getByIndex(@Param("index") index: number) {
+  //   return this.appService.getByIndex(index)
+  // }
 
   @Post()
   add(@Body() text:string){

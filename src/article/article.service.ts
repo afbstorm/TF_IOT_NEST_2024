@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ArticleCreateDTO } from 'src/DTO/article_create.dto';
 import { ArticleUpdateDTO } from 'src/DTO/article_update.dto';
 import { Article } from './article.entity';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 
 @Injectable()
 export class ArticleService {
@@ -20,6 +20,22 @@ export class ArticleService {
 
     async getById(id : number): Promise<Article>{
         return this.articleRepo.findOne({where : {id : id}})
+    }
+
+    async delete(id:number) : Promise<DeleteResult> {
+        return this.articleRepo.delete(id)
+    }
+
+    async update(id:number, article: ArticleUpdateDTO) : Promise<UpdateResult> {
+        return this.articleRepo.update(id, article)
+    }
+
+    async getLike(id : number) : Promise<Article>
+    {
+        return this.articleRepo.findOne(
+            {where : {id : id}
+            , relations : {like : true}
+        })
     }
 
     // list: ArticleCreateDTO[] = []

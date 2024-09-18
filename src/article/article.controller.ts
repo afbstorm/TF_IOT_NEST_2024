@@ -9,7 +9,7 @@ export class ArticleController {
     constructor(private articleService : ArticleService){}
 
    
-    @Get("list")
+    @Get()
     test() {
         return this.articleService.getAll()
     }
@@ -25,13 +25,19 @@ export class ArticleController {
         return this.articleService.getById(id)
     }
 
-    // @Delete("/:id")
-    // delete(@Param("id") id: number) {
-    //     this.articleService.delete(id)
-    // }
+    @Delete("/:id")
+    delete(@Param("id") id:number) {
+        return this.articleService.delete(id)
+    }
 
-    // @Patch("/:id")
-    // update(@Param("id") id : number, @Body() article : ArticleUpdateDTO){
-    //     this.articleService.update(id, article)
-    // }
+    @Patch("/:id")
+    update(@Param("id") id : number, @Body() article : ArticleUpdateDTO){
+        this.articleService.update(id, article)
+    }
+
+    @Get("like/:id")
+    getLike(@Param("id") id:number) {
+        return this.articleService.getLike(id)
+    }
+    
 }

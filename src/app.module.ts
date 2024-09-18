@@ -5,6 +5,9 @@ import { ArticleController } from './article/article.controller';
 import { ArticleService } from './article/article.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Article } from './article/article.entity';
+import { UserController } from './user/user.controller';
+import { UserService } from './user/user.service';
+import { User } from './user/user.entity';
 
 @Module({
   imports: [
@@ -15,15 +18,16 @@ import { Article } from './article/article.entity';
       username: 'sa',
       password: 'Test1234',
       options: {
-        encrypt : false
+        encrypt : false,
+        trustServerCertificate : false
       },
       database: 'IOTDemoNest',
-      entities: [Article],
+      entities: [Article, User],
       synchronize : true //a n'utiliser qu'en dev sous peine de perte de data
     }),
-    TypeOrmModule.forFeature([Article])
+    TypeOrmModule.forFeature([Article, User])
   ],
-  controllers: [AppController, ArticleController],
-  providers: [AppService, ArticleService],
+  controllers: [AppController, ArticleController, UserController],
+  providers: [AppService, ArticleService, UserService],
 })
 export class AppModule {}
