@@ -7,6 +7,7 @@ export class AccessGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const { userId } = request.session;
 
+    console.log(request)
     if (userId !== 5) {
       return false
     }
