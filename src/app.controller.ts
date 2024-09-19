@@ -15,16 +15,16 @@ export class AppController {
   // getByIndex(@Param("index") index: number) {
   //   return this.appService.getByIndex(index)
   // }
+  //
+  // @Post()
+  // add(@Body() text:string){
+  //   this.appService.saveText(text)
+  // }
+  //
+  // @Put("/:index")
+  // put(@Param("index") index:number, @Body() text : string){
+  //   this.appService.update(index, text)
+  // }
 
-  @Post()
-  add(@Body() text:string){
-    this.appService.saveText(text)
-  }
 
-  @Put("/:index")
-  put(@Param("index") index:number, @Body() text : string){
-    this.appService.update(index, text)
-  }
-
-  
 }

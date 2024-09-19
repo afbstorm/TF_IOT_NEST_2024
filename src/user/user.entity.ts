@@ -12,6 +12,9 @@ export class User {
     @Column({length : 100, type:'varchar'})
     email:string
 
+    @Column()
+    password: string
+
     @OneToMany(type => Article, article => article.author)
     articles : Article[]
 }

@@ -8,6 +8,9 @@ import { Article } from './article/article.entity';
 import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 import { User } from './user/user.entity';
+import { AuthService } from './user/auth/auth.service';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { CurrentUserInterceptor } from './interceptors/current-user/current-user.interceptor';
 
 @Module({
   imports: [
@@ -16,10 +19,9 @@ import { User } from './user/user.entity';
       host: 'localhost',
       port: 1433,
       username: 'sa',
-      password: 'Test1234',
+      password: 'mogogu69',
       options: {
-        encrypt : false,
-        trustServerCertificate : false
+        trustServerCertificate : true
       },
       database: 'IOTDemoNest',
       entities: [Article, User],
@@ -28,6 +30,11 @@ import { User } from './user/user.entity';
     TypeOrmModule.forFeature([Article, User])
   ],
   controllers: [AppController, ArticleController, UserController],
-  providers: [AppService, ArticleService, UserService],
+  providers: [AppService, ArticleService, UserService, AuthService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: CurrentUserInterceptor
+    }],
 })
 export class AppModule {}
+
